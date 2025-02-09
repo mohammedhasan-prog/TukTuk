@@ -49,3 +49,7 @@ return  res.status(401).json({message:'Invalid email and password'});
 
 
 }
+
+module.exports.getUserProfile=async (req,res,next)=>{
+  res.status(200).json({user:req.user});
+}
