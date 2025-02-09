@@ -18,4 +18,19 @@ This endpoint registers a new user by validating the input data and creating a u
   "email": "john.doe@example.com",
   "password": "password123"
 }
+```
+
+## How Data is Sent by User
+The user sends the data as a JSON object in the body of the POST request. The `Content-Type` header must be set to `application/json`.
+```json
+{
+  "fullname": {
+    "firstname": "John",
+    "lastname": "Doe"
+  },
+  "email": "john.doe@example.com",
+  "password": "password123"
+}
+```
+
 

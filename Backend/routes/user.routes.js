@@ -11,4 +11,8 @@ body('fullname.firstname').isLength({min:3}).withMessage('Firstname must be atle
 
 ],userController.registerUser);
 
+
+router.post('/login',[body('email').isEmail().withMessage('Invalid Email'),
+body('password').isLength({min:6}).withMessage('Password must be atleast 5 characters long')
+],userController.loginUser);
 module.exports=router;
