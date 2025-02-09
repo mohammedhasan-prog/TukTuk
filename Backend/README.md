@@ -89,4 +89,69 @@ Authorization: Bearer <jwt_token>
 }
 ```
 
+# Captain Endpoints Documentation
+
+## /captain/register Endpoint
+
+### Description
+This endpoint registers a new captain by validating the input data and creating a captain record in the database. Upon successful registration, a JWT token and captain object are returned.
+
+### Endpoint
+- **URL:** `/captain/register`
+- **Method:** `POST`
+- **Content-Type:** `application/json`
+
+### Required Request Data
+```json
+{
+  "fullname": {
+    "firstname": "John",
+    "lastname": "Doe"    // optional
+  },
+  "email": "john.captain@example.com",
+  "password": "password123",
+  "vehicle": {
+    "color": "Black",
+    "plate": "ABC123",
+    "capacity": 4,
+    "vehicleType": "car"    // must be one of: "car", "motorcycle", "Auto"
+  }
+}
+```
+
+### Validation Rules
+- Email must be valid and unique
+- Password must be at least 6 characters long
+- Firstname must be at least 3 characters long
+- Vehicle color must be at least 3 characters long
+- Vehicle plate must be at least 5 characters long
+- Vehicle capacity must be at least 1
+- Vehicle type must be one of: "car", "motorcycle", "Auto"
+
+### Success Response
+```json
+{
+  "token": "jwt_token_here",
+  "captain": {
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.captain@example.com",
+    "vehicle": {
+      "color": "Black",
+      "plate": "ABC123",
+      "capacity": 4,
+      "vehicleType": "car",
+      "location": {
+        "lat": null,
+        "lng": null
+      }
+    },
+    "status": "offline",
+    "_id": "captain_id"
+  }
+}
+```
+
 
