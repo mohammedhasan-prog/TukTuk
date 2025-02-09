@@ -18,5 +18,7 @@ body('password').isLength({min:6}).withMessage('Password must be atleast 5 chara
 ],userController.loginUser);
 
 router.get('/profile',authMiddleware.authUser,userController.getUserProfile);
+
+router.get('/logout',authMiddleware.authUser,userController.logoutUser);
 module.exports=router;
 
