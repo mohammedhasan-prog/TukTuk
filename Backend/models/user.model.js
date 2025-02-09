@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const jwt=require('jsonwebtoken');
-const bcrypt=require('bcryptjs');
+const bcrypt=require('bcrypt');
 
 
 
@@ -10,8 +10,8 @@ const userSchema = new mongoose.Schema({
   fullname: {
     firstname: {
       type: String,
-      required: true,
-      minlength: [3, "Minimum 3 characters required"],
+       required: true,
+      minlength: [3, "Minimum 3 characters required"]
     },
     lastname: {
       type: String,

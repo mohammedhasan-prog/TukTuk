@@ -1,18 +1,18 @@
-const express=require('express');
-const app=express();
-const dotenv=require('dotenv');
-const cors=require('cors');
-const connectDB=require('./db/db');
-
+const express = require("express");
+const app = express();
+const dotenv = require("dotenv");
+const cors = require("cors");
+const connectDB = require("./db/db");
+const userRoutes = require("./routes/user.routes");
 
 dotenv.config();
 app.use(cors());
 connectDB();
 
-app.get('/',(req,res)=>{
-    res.send('hello World')
-})
+app.use(express.json());
 
+app.use(express.urlencoded({ extended: true }));
 
-module.exports=app;
+app.use(  "/users", userRoutes);
 
+module.exports = app;
