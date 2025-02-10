@@ -154,4 +154,110 @@ This endpoint registers a new captain by validating the input data and creating 
 }
 ```
 
+## /captain/login Endpoint
+
+### Description
+This endpoint authenticates a captain by verifying their email and password. Upon successful authentication, a JWT token and captain object are returned.
+
+### Endpoint
+- **URL:** `/captain/login`
+- **Method:** `POST`
+- **Content-Type:** `application/json`
+
+### Required Request Data
+```json
+{
+  "email": "john.captain@example.com",
+  "password": "password123"
+}
+```
+
+### Success Response
+```json
+{
+  "token": "jwt_token_here",
+  "captain": {
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.captain@example.com",
+    "vehicle": {
+      "color": "Black",
+      "plate": "ABC123",
+      "capacity": 4,
+      "vehicleType": "car",
+      "location": {
+        "lat": null,
+        "lng": null
+      }
+    },
+    "status": "offline",
+    "_id": "captain_id"
+  }
+}
+```
+
+## /captain/profile Endpoint
+
+### Description
+This endpoint retrieves the profile information of the currently authenticated captain.
+
+### Endpoint
+- **URL:** `/captain/profile`
+- **Method:** `GET`
+- **Authentication:** Required (JWT Token in Authorization header)
+
+### Request Headers
+```
+Authorization: Bearer <jwt_token>
+```
+
+### Success Response
+```json
+{
+  "captain": {
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.captain@example.com",
+    "vehicle": {
+      "color": "Black",
+      "plate": "ABC123",
+      "capacity": 4,
+      "vehicleType": "car",
+      "location": {
+        "lat": null,
+        "lng": null
+      }
+    },
+    "status": "offline",
+    "_id": "captain_id"
+  }
+}
+```
+
+## /captain/logout Endpoint
+
+### Description
+This endpoint logs out the current captain by invalidating their JWT token.
+
+### Endpoint
+- **URL:** `/captain/logout`
+- **Method:** `GET`
+- **Authentication:** Required (JWT Token in Authorization header)
+
+### Request Headers
+```
+Authorization: Bearer <jwt_token>
+```
+
+### Success Response
+```json
+{
+  "message": "Logged out successfully"
+}
+```
+
 
