@@ -45,22 +45,24 @@ const CaptainLogin = () => {
               </div>
             </form>
           </div>
-          <div className=" flex justify-center item-center">
+          
+          <div className=" flex gap-1 mt-1 justify-center ">
+              
+              <p className="text-lg mt-0">New here?</p>
+              <Link to={"/captain-signup"} className="text-lg mt-0 text-blue-600">
+              Register hear
+              </Link>
+            </div>
+
+            <div className=" flex justify-center item-center">
             <Link
               to={"/login"}
-              className="bg-[#10b464]  text-xl text-white px-4 py-2 rounded inline-block text-center w-[86%]"
+              className="bg-[#c77028]  text-xl text-white px-4 py-2 rounded inline-block text-center w-[86%]"
             >
               Sign in as a User
             </Link>
             
           </div>
-          <div className=" flex gap-1 mt-1 justify-center ">
-              
-              <p className="text-lg mt-0">New here?</p>
-              <Link to={"/captain-signup"} className="text-lg mt-0 text-blue-600">
-                Create new Account
-              </Link>
-            </div>
         </div>
   )
 }
