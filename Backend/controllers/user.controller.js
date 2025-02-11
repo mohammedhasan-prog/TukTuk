@@ -2,6 +2,7 @@ const userModel=require('../models/user.model');
 const userService=require('../services/user.service');
 const {validationResult}=require('express-validator');
 const blackListTokenModel=require('../models/blacklistToken.model');
+const { set } = require('../app');
 
 module.exports.registerUser=async (req,res,next)=>{
   const errors=validationResult(req);
@@ -25,6 +26,7 @@ module.exports.registerUser=async (req,res,next)=>{
   })
 
   const token= user.generateAuthToken();
+  res.cookie('token',token,{httpOnly:true});
 
   res.status(201).json({token,user});
 }
