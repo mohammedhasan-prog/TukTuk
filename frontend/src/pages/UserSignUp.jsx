@@ -1,5 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { UserDataContext } from "../context/userContext";
 
 const UserSignUp = () => {
   const [firstName, setFirstName] = React.useState("");
@@ -7,24 +10,46 @@ const UserSignUp = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [userData, setUserData] = React.useState({});
+  const [backendData, setBackendData] = React.useState({});
+
+  const { user, setUser } = React.useContext(UserDataContext);
+
+  const navigate = useNavigate();
   return (
     <div className="flex-col justify-center ">
       <div className="p-7 ">
         <img className="w-20 " src="logo.png" alt="" />
         <form
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
             e.preventDefault();
 
             setUserData({
-              fullName: {
-                firstName:firstName,
-                lastName:lastName,
+              fullname: {
+                firstname: firstName,
+                lastname: lastName,
               },
               email: email,
               password: password,
             });
 
             console.log(userData);
+
+            try {
+              const response = await axios.post(
+              `${import.meta.env.VITE_BASE_URL}/users/register`,
+              userData
+              );
+
+              if (response.status === 201) {
+              const data = response.data;
+              // setUser(data.user); Todo
+              console.log(data);
+
+              navigate("/home");
+              }
+            } catch (error) {
+              console.error("Error during registration:", error);
+            }
 
             setEmail("");
             setPassword("");
@@ -67,8 +92,8 @@ const UserSignUp = () => {
               placeholder="password"
               onChange={(e) => setPassword(e.target.value)}
             />
-            <button className="bg-black mt-5  text-xl text-white px-2 py-2 rounded ">
-              Login
+            <button className="bg-black mt-5   text-xl text-white px-2 py-2 rounded ">
+              Create account
             </button>
 
             <div className=" flex gap-1 mt-1 justify-center ">
@@ -80,8 +105,6 @@ const UserSignUp = () => {
           </div>
         </form>
       </div>
-
-      
     </div>
   );
 };
