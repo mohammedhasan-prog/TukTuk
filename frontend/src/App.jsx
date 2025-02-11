@@ -6,10 +6,9 @@ import UserSignUp from "./pages/UserSignUp";
 import CaptainLogin from "./pages/CaptainLogin";
 import CaptainSignUp from "./pages/CaptainSignUp";
 import Home from "./pages/Home";
-
+import UserProtectedWrrapper from "./pages/UserProtectedWrrapper";
 
 const App = () => {
-
   return (
     <div className="text-3xl ">
       <Routes>
@@ -19,7 +18,15 @@ const App = () => {
         <Route path="/signup" element={<UserSignUp />} />
         <Route path="/captain-login" element={<CaptainLogin />} />
         <Route path="/captain-signup" element={<CaptainSignUp />} />
-        <Route path="/home" element={<Home />} />
+        <Route
+          path="/home"
+          element={
+            <UserProtectedWrrapper>
+           
+              <Home />
+            </UserProtectedWrrapper>
+          }
+        />
       </Routes>
     </div>
   );

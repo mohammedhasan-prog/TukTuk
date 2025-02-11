@@ -1,18 +1,33 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React,{useContext} from "react";
+import { Link,useNavigate } from "react-router-dom";
+import { UserDataContext } from "../context/userContext";
+import axios from "axios";
 
 const UserLogin = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [userData, setUserData] = React.useState({});
 
+  const { setUser } = useContext(UserDataContext);
+  const navigate = useNavigate();
+
   return (
     <div className="flex-col justify-center">
       <div className="p-7">
         <img className="w-20 " src="logo.png" alt="" />
-        <form onSubmit={(e) =>{
+        <form onSubmit={async (e) =>{
           e.preventDefault();
           setUserData({email,password});
+
+          const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/login`, 
+            userData
+          )
+
+          if(response.status === 200){
+            const data = response.data;
+            localStorage.setItem('token',data.token);
+            navigate('/home')
+          }
           // console.log(userData);
           setEmail("");
           setPassword("");
