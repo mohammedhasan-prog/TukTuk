@@ -10,9 +10,9 @@ const UserSignUp = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [userData, setUserData] = React.useState({});
-  const [backendData, setBackendData] = React.useState({});
+  // const [backendData, setBackendData] = React.useState({});
 
-  const { user, setUser } = React.useContext(UserDataContext);
+  const {  setUser } = React.useContext(UserDataContext);
 
   const navigate = useNavigate();
   return (
@@ -42,7 +42,8 @@ const UserSignUp = () => {
 
               if (response.status === 201) {
               const data = response.data;
-              // setUser(data.user); Todo
+              // setUser(data.user); 
+              localStorage.setItem("token", JSON.stringify(data.token));
               console.log(data);
 
               navigate("/home");
