@@ -7,7 +7,7 @@ const CaptainProtectedWrarapper = ({ children }) => {
   const token = localStorage.getItem("token");
   // const {user}= useContext(UserDataContext);
   const navigate = useNavigate();
-  const { captain, setCaptain } =
+  const {  setCaptain } =
     useContext(CaptainDataContext);
 const [loading, setLoading] = React.useState(true);
   useEffect(() => {
@@ -25,10 +25,11 @@ const [loading, setLoading] = React.useState(true);
     })
     .then((res) => {
       if (res.status === 200) {
-        if (res.data.captain) {
-          setLoading(false);
-          setCaptain(res.data.captain);
-        }
+        // if (res.data.captain) {
+        //   setLoading(false);
+        //   // setCaptain(res.data.captain);
+        // }
+        setLoading(false);
       }
     })
     .catch((err) => {

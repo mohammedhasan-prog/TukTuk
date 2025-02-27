@@ -4,11 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { CaptainDataContext } from '../context/CaptainContext';
 
+
 const CaptainLogin = () => {
    const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [userData, setUserData] = React.useState({});
-    const {captain,setCaptain}=useContext(CaptainDataContext)
+    const {captain,setCaptain}=React.useContext(CaptainDataContext)
     const navigate = useNavigate();
   return (
       <div className="flex-col justify-center ">
