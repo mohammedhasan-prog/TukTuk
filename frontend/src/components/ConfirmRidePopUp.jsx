@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
+import { Link } from "react-router-dom";
 
 const ConfirmRidePopUp = () => {
   const containerRef = useRef(null);
@@ -16,7 +17,7 @@ const ConfirmRidePopUp = () => {
     }
   }, []);
 
-  
+
 
   return (
     <div ref={containerRef} className="p-4 bg-white shadow-md rounded-lg">
@@ -51,9 +52,11 @@ const ConfirmRidePopUp = () => {
       </div>
 
       {/* Pickup Button */}
-      <button className="w-full bg-green-500 text-xl text-white py-2 px-3 rounded mt-4">
+      <div className="w-full  mt-4 flex flex-col items-center">
+      <Link to={'/captain-riding'} className=" w-[100%] text-center bg-green-500 text-xl text-white py-2 px-3 rounded mt-4">
         Pickup
-      </button>
+      </Link>
+      </div>
     </div>
   );
 };

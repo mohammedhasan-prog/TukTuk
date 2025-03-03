@@ -8,7 +8,7 @@ import ConfirmRidePopUp from "../components/ConfirmRidePopUp";
 
 const CaptainHome = () => {
   // Control whether the RidePopUp panel is shown
-  const [ridePopUpPanel, setRidePopUpPanel] = useState(true);
+  const [ridePopUpPanel, setRidePopUpPanel] = useState(false);
   const [confirmRidePopUpPanel, setConfirmRidePopUpPanel] = useState(false);
 
 
@@ -19,14 +19,15 @@ const CaptainHome = () => {
   const ridePopUpRef = useRef(null);
 
   useEffect(() => {
+   setTimeout(() => {
+    setRidePopUpPanel(true);
+   }, 5000);
+  })
+
+  useEffect(() => {
     // Animate top image (ride animation)
-    if (topImageRef.current) {
-      gsap.fromTo(
-        topImageRef.current,
-        { opacity: 0, y: -50 },
-        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
-      );
-    }
+    
+    
     // Animate ride details (CaptainDetail section)
     if (detailRef.current) {
       gsap.fromTo(
@@ -48,7 +49,7 @@ const CaptainHome = () => {
   return (
     <div className="h-screen flex flex-col relative">
       <div>
-        <img ref={logoRef} className="w-20 absolute" src="/logo.png" alt="logo" />
+        <img  className="w-20 absolute" src="logo.png" alt="logo" />
         <Link
           to="/home"
           className="fixed right-4 bg-white h-10 w-10 flex items-center justify-center rounded-full m-3"
@@ -58,7 +59,7 @@ const CaptainHome = () => {
       </div>
 
       {/* Top half: Ride animation/image */}
-      <div ref={topImageRef} className="h-3/5">
+      <div  className="h-3/5">
         <img
           className="h-full w-full object-cover"
           src="https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif"
