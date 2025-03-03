@@ -360,4 +360,3 @@ Provides address suggestions based on the user input. This endpoint requires aut
     "..."
   ]
 }
-```
