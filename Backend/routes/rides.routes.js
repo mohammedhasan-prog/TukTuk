@@ -12,5 +12,10 @@ router.post('/create-ride',
 
 ,rideController.createRide);
 
+router.get('/get-fare',
+    body('origin').isString().withMessage('invalid origin'),
+    body('destination').isString().withMessage('invalid destination').authMiddleware.authUser
+,rideController.getFare);
+
 module.exports=router;
 

@@ -12,7 +12,7 @@ module.exports.createRide = async (req, res) => {
    res.status(201).json({ride});
 }
 
-async function getOTP(num){
+module.exports.getOTP=function getOTP(num){
     let otp = '';
     for (let i = 0; i < num; i++) {
         otp += crypto.randomInt(0, 10);

@@ -261,3 +261,103 @@ Authorization: Bearer <jwt_token>
 ```
 
 
+# Rides Endpoints
+
+## GET /rides/get-fare
+
+**Description:**  
+Calculates and returns the fare details for a ride between the provided origin and destination. This endpoint requires authentication.
+
+**Request:**
+
+- **Method:** GET
+- **Headers:**  
+  - `Authorization: Bearer <token>` (or equivalent cookie-based auth)
+- **Body Parameters:**
+  - `origin` (string, required) – The starting point of the ride.
+  - `destination` (string, required) – The ending point of the ride.
+
+*Note:* Although this is a GET request, the endpoint expects the data to be passed in the request body.
+
+**Response:**
+
+- **Success (200 OK):**
+  ```json
+  {
+    "fare": {
+      "car": "<calculated fare for car>",
+      "bike": "<calculated fare for bike>",
+      "auto": "<calculated fare for auto>"
+    }
+  }
+
+
+# Maps Endpoints Documentation
+
+## GET /maps/get-coordinates
+
+### Description
+Retrieves the geographical coordinates (latitude and longitude) for a given address using the Google Geocoding API. This endpoint requires authentication.
+
+### Endpoint
+- **URL:** `/maps/get-coordinates`
+- **Method:** `GET`
+- **Authentication:** Required (JWT Token in Authorization header)
+
+### Query Parameters
+- `address` (string, required, minimum 3 characters) – The address to geocode.
+
+### Success Response
+```json
+{
+  "coordinates": {
+    "lat": "<latitude>",
+    "lng": "<longitude>"
+  }
+}
+```
+
+## GET /maps/get-distance
+
+### Description
+Calculates and returns the distance between an origin and a destination. This endpoint requires authentication.
+
+### Endpoint
+- **URL:** `/maps/get-distance`
+- **Method:** `GET`
+- **Authentication:** Required (JWT Token in Authorization header)
+
+### Query Parameters
+- `origin` (string, required, minimum 3 characters) – The starting address.
+- `destination` (string, required, minimum 3 characters) – The ending address.
+
+### Success Response
+```json
+{
+  "distance": "<calculated distance>"
+}
+```
+
+## GET /maps/get-suggestion
+
+### Description
+Provides address suggestions based on the user input. This endpoint requires authentication.
+
+### Endpoint
+- **URL:** `/maps/get-suggestion`
+- **Method:** `GET`
+- **Authentication:** Required (JWT Token in Authorization header)
+
+### Query Parameters
+- `input` (string, required, minimum 3 characters) – The partial address input for suggestions.
+
+### Success Response
+```json
+{
+  "suggestions": [
+    "Suggested Address 1",
+    "Suggested Address 2",
+    "..."
+  ]
+}
+```
